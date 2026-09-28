@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Portfolio of Kshitija Morale: product-minded growth, SEO and web work, with results from two B2B websites built end to end.">
+<title>Kshitija Morale — Aspiring Product Manager · Growth &amp; Analytics</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#07090f;--ink2:#0c0f1a;--ink3:#111624;--ink4:#171d2e;
+  --gold:#c8a94b;--gold2:#e4c870;--gold3:rgba(200,169,75,.1);
+  --cream:#f5f2ec;--off:#d4cfc5;
+  --slate:#5c6b84;--slate2:#8496b0;--slate3:#a8b8ce;
+  --border:rgba(200,169,75,.13);--border2:rgba(255,255,255,.06);--border3:rgba(255,255,255,.03);
+  --serif:'Cormorant Garamond',Georgia,serif;
+  --sans:'DM Sans',system-ui,sans-serif;
+  --mono:'DM Mono',monospace;
+  --ease:cubic-bezier(.22,1,.36,1);
+}
+html{scroll-behavior:smooth}
+body{background:var(--ink);color:var(--cream);font-family:var(--sans);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+::selection{background:var(--gold);color:var(--ink)}
+::-webkit-scrollbar{width:3px}
+::-webkit-scrollbar-track{background:var(--ink)}
+::-webkit-scrollbar-thumb{background:var(--gold)}
+
+/* ─── LOADER ─── */
+#loader{position:fixed;inset:0;background:var(--ink);z-index:9999;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:20px;transition:opacity .6s var(--ease),visibility .6s}
+#loader.gone{opacity:0;visibility:hidden}
+.loader-name{font-family:var(--serif);font-size:clamp(28px,5vw,48px);font-weight:700;color:var(--cream);letter-spacing:-.02em;overflow:hidden}
+.loader-name span{display:inline-block;animation:slideUp .8s var(--ease) forwards;opacity:0}
+.loader-name span:nth-child(1){animation-delay:.1s}
+.loader-name span:nth-child(2){animation-delay:.2s}
+@keyframes slideUp{from{opacity:0;transform:translateY(100%)}to{opacity:1;transform:none}}
+.loader-bar-wrap{width:180px;height:1px;background:var(--border2)}
+.loader-bar{height:1px;background:var(--gold);width:0;animation:loadBar 1.4s var(--ease) .3s forwards}
+@keyframes loadBar{to{width:100%}}
+
+/* ─── CURSOR ─── */
+.cursor{position:fixed;pointer-events:none;z-index:9990}
+.cursor-dot{width:6px;height:6px;border-radius:50%;background:var(--gold);position:fixed;transform:translate(-50%,-50%);transition:transform .1s;z-index:9991}
+.cursor-ring{width:36px;height:36px;border-radius:50%;border:1px solid rgba(200,169,75,.4);position:fixed;transform:translate(-50%,-50%);transition:left .12s var(--ease),top .12s var(--ease);z-index:9990}
+
+/* ─── NAV ─── */
+nav{position:fixed;top:0;left:0;right:0;z-index:500;height:68px;display:flex;align-items:center;transition:background .5s,border-color .5s;border-bottom:1px solid transparent}
+nav.scrolled{background:rgba(7,9,15,.92);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-bottom-color:var(--border)}
+.nav-inner{max-width:1120px;margin:0 auto;padding:0 40px;display:flex;align-items:center;justify-content:space-between;width:100%}
+.nav-logo{font-family:var(--serif);font-size:22px;font-weight:700;letter-spacing:-.02em;color:var(--cream);cursor:pointer}
+.nav-logo em{font-style:normal;color:var(--gold)}
+.nav-links{display:flex;align-items:center;gap:36px;list-style:none}
+.nav-links a{font-size:13px;font-weight:400;color:var(--slate2);letter-spacing:.02em;transition:color .25s;position:relative;padding-bottom:2px}
+.nav-links a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1px;background:var(--gold);transition:width .3s var(--ease)}
+.nav-links a:hover{color:var(--cream)}
+.nav-links a:hover::after,.nav-links a.active::after{width:100%}
+.nav-links a.active{color:var(--cream)}
+.nav-cta{background:transparent;border:1px solid var(--border);color:var(--gold)!important;padding:8px 22px;border-radius:2px;font-size:13px;letter-spacing:.04em;transition:all .25s!important;cursor:pointer}
+.nav-cta:hover{background:var(--gold3);border-color:var(--gold)!important}
+.nav-cta::after{display:none!important}
+.ham{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:6px}
+.ham span{display:block;width:22px;height:1.5px;background:var(--slate2);transition:all .3s}
+/* Mobile */
+.mob{position:fixed;inset:0;background:var(--ink2);z-index:600;display:flex;flex-direction:column;justify-content:center;padding:60px 40px;gap:6px;transform:translateX(100%);transition:transform .5s var(--ease)}
+.mob.open{transform:none}
+.mob a{font-family:var(--serif);font-size:clamp(36px,7vw,56px);font-weight:700;color:var(--slate2);line-height:1.1;transition:color .2s;padding:6px 0;border-bottom:1px solid var(--border3)}
+.mob a:last-child{border-bottom:none}
+.mob a:hover{color:var(--gold)}
+.mob-close{position:absolute;top:24px;right:36px;background:none;border:none;color:var(--slate);font-size:22px;cursor:pointer;font-family:var(--sans)}
+
+/* ─── HERO ─── */
+.hero{min-height:100vh;display:grid;place-items:center;position:relative;overflow:hidden;padding:100px 0 80px}
+/* bg grid */
+.hero-grid-bg{position:absolute;inset:0;background-image:linear-gradient(var(--border3) 1px,transparent 1px),linear-gradient(90deg,var(--border3) 1px,transparent 1px);background-size:72px 72px;mask-image:radial-gradient(ellipse 80% 60% at 50% 50%,black 30%,transparent 100%)}
+/* glow orbs */
+.orb{position:absolute;border-radius:50%;filter:blur(100px);pointer-events:none}
+.orb1{width:600px;height:600px;background:rgba(200,169,75,.05);top:-150px;right:-200px;animation:drift1 18s ease-in-out infinite}
+.orb2{width:400px;height:400px;background:rgba(200,169,75,.04);bottom:-100px;left:-100px;animation:drift2 22s ease-in-out infinite}
+@keyframes drift1{0%,100%{transform:translate(0,0)}50%{transform:translate(-40px,30px)}}
+@keyframes drift2{0%,100%{transform:translate(0,0)}50%{transform:translate(30px,-40px)}}
+.hero-inner{position:relative;z-index:2;max-width:1120px;width:100%;margin:0 auto;padding:0 40px}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:11px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:28px;opacity:0;animation:riseIn .8s var(--ease) 1.8s forwards}
+.eyebrow-line{width:32px;height:1px;background:var(--gold)}
+.blink-dot{width:5px;height:5px;border-radius:50%;background:var(--gold);animation:pulse 2.5s ease-in-out infinite}
+@keyframes pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.5);opacity:.4}}
+@keyframes riseIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+h1.hero-h1{font-family:var(--serif);font-size:clamp(56px,9vw,116px);font-weight:700;line-height:.92;letter-spacing:-.035em;margin-bottom:32px}
+h1.hero-h1 .line{display:block;overflow:hidden}
+h1.hero-h1 .line span{display:block;opacity:0;transform:translateY(105%);animation:lineUp .9s var(--ease) forwards}
+h1.hero-h1 .line:nth-child(1) span{animation-delay:1.9s}
+h1.hero-h1 .line:nth-child(2) span{animation-delay:2.05s}
+h1.hero-h1 .line:nth-child(3) span{animation-delay:2.2s}
+@keyframes lineUp{to{opacity:1;transform:none}}
+h1.hero-h1 em{font-style:italic;font-weight:400;color:var(--gold)}
+.hero-sub{font-size:17px;color:var(--slate2);line-height:1.78;max-width:50ch;margin-bottom:40px;font-weight:300;opacity:0;animation:riseIn .9s var(--ease) 2.5s forwards}
+.hero-sub b{color:var(--cream);font-weight:500}
+.hero-actions{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:72px;opacity:0;animation:riseIn .9s var(--ease) 2.7s forwards}
+.btn-primary{background:var(--gold);color:var(--ink);padding:15px 32px;border-radius:2px;font-size:14px;font-weight:600;letter-spacing:.04em;transition:all .3s;display:inline-flex;align-items:center;gap:9px;border:none;cursor:pointer}
+.btn-primary:hover{background:var(--gold2);transform:translateY(-2px);box-shadow:0 16px 40px rgba(200,169,75,.2)}
+.btn-line{background:transparent;color:var(--slate3);padding:15px 32px;border-radius:2px;font-size:14px;font-weight:400;letter-spacing:.04em;border:1px solid var(--border2);transition:all .3s;display:inline-flex;align-items:center;gap:9px}
+.btn-line:hover{border-color:var(--border);color:var(--cream);transform:translateY(-1px)}
+/* Hero numbers bar */
+.hero-nums{display:flex;border:1px solid var(--border);border-radius:2px;overflow:hidden;opacity:0;animation:riseIn .9s var(--ease) 2.9s forwards}
+.hn{flex:1;padding:22px 24px;border-right:1px solid var(--border);transition:background .3s}
+.hn:last-child{border-right:none}
+.hn:hover{background:var(--gold3)}
+.hn-val{font-family:var(--serif);font-size:clamp(20px,2.5vw,28px);font-weight:700;color:var(--gold);line-height:1;margin-bottom:5px}
+.hn-label{font-size:11px;color:var(--slate);line-height:1.4;font-weight:400}
+
+/* ─── SECTION COMMON ─── */
+.section{padding:100px 0;position:relative}
+.section+.section{border-top:1px solid var(--border3)}
+.s-wrap{max-width:1120px;margin:0 auto;padding:0 40px}
+.s-eyebrow{font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:12px;margin-bottom:14px}
+.s-eyebrow::after{content:'';flex:0 0 40px;height:1px;background:var(--gold);opacity:.5}
+h2{font-family:var(--serif);font-size:clamp(34px,5vw,58px);font-weight:700;line-height:1.02;letter-spacing:-.03em;margin-bottom:16px}
+h2 em{font-style:italic;font-weight:400;color:var(--off)}
+.s-sub{font-size:16px;color:var(--slate2);line-height:1.78;max-width:52ch;font-weight:300;margin-bottom:56px}
+
+/* ─── REVEAL ─── */
+.rev{opacity:0;transform:translateY(24px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.rev.in{opacity:1;transform:none}
+.rev-l{opacity:0;transform:translateX(-24px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.rev-l.in{opacity:1;transform:none}
+.d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.24s}.d4{transition-delay:.32s}.d5{transition-delay:.4s}
+
+/* ─── ABOUT ─── */
+.about-layout{display:grid;grid-template-columns:1fr 400px;gap:80px;align-items:start}
+.about-body{font-size:15px;color:var(--slate2);line-height:1.85;font-weight:300}
+.about-body p{margin-bottom:20px}
+.about-body b{color:var(--cream);font-weight:500}
+.about-body p:last-child{margin-bottom:0}
+.about-aside{display:flex;flex-direction:column;gap:2px}
+.ac{background:var(--ink2);border:1px solid var(--border2);padding:28px;transition:border-color .3s,background .3s}
+.ac:hover{border-color:var(--border);background:var(--ink3)}
+.ac-label{font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
+.ac-val{font-size:13px;color:var(--slate2);line-height:1.65}
+.ac-val b{color:var(--cream);font-weight:500;display:block;margin-bottom:2px}
+
+/* ─── EXPERIENCE ─── */
+.xp-list{display:flex;flex-direction:column}
+.xp{display:grid;grid-template-columns:160px 1fr;gap:0;position:relative}
+.xp::before{content:'';position:absolute;left:159px;top:16px;bottom:0;width:1px;background:var(--border2)}
+.xp:last-child::before{display:none}
+.xp-date{font-family:var(--mono);font-size:11px;color:var(--slate);padding:10px 28px 44px 0;line-height:1.6}
+.xp-body{padding:0 0 48px 36px;position:relative}
+.xp-body::before{content:'';position:absolute;left:-5px;top:10px;width:11px;height:11px;border-radius:50%;background:var(--ink);border:2px solid var(--gold)}
+.xp-role{font-size:17px;font-weight:600;color:var(--cream);margin-bottom:3px}
+.xp-co{font-size:13px;color:var(--gold);margin-bottom:14px}
+.xp-desc{font-size:14px;color:var(--slate2);line-height:1.75;font-weight:300;margin-bottom:14px;max-width:64ch}
+.xp-tags{display:flex;flex-wrap:wrap;gap:6px}
+.xp-tag{font-size:11px;color:var(--slate2);border:1px solid var(--border2);border-radius:1px;padding:3px 9px;transition:all .2s}
+.xp-tag:hover{color:var(--cream);border-color:var(--border)}
+
+/* ─── CASE STUDIES ─── */
+.case-stack{display:flex;flex-direction:column;gap:2px;margin-bottom:2px}
+.case{background:var(--ink2);border:1px solid var(--border2);padding:44px;transition:border-color .4s;position:relative;overflow:hidden}
+.case::after{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:linear-gradient(180deg,var(--gold),rgba(200,169,75,.2));transform:scaleY(0);transform-origin:top;transition:transform .5s var(--ease)}
+.case:hover{border-color:var(--border)}
+.case:hover::after{transform:scaleY(1)}
+.case-top{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:24px;margin-bottom:24px}
+.case-type{font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
+.case-title{font-family:var(--serif);font-size:clamp(24px,3.5vw,36px);font-weight:700;color:var(--cream);letter-spacing:-.02em;line-height:1.05}
+.case-kpis{display:flex;gap:36px;flex-wrap:wrap}
+.kpi{text-align:right}
+.kpi-val{font-family:var(--serif);font-size:clamp(24px,3vw,34px);font-weight:700;color:var(--gold);line-height:1}
+.kpi-label{font-size:10px;color:var(--slate);margin-top:3px;line-height:1.3}
+.case-body{font-size:14px;color:var(--slate2);line-height:1.8;font-weight:300;max-width:72ch;margin-bottom:22px}
+.case-chips{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:22px}
+.chip{font-size:11px;font-weight:500;padding:5px 11px;border:1px solid var(--border2);border-radius:1px;color:var(--slate2);transition:all .2s}
+.chip:hover{border-color:var(--border);color:var(--cream)}
+.chip.g{border-color:rgba(74,222,128,.2);color:#4ade80}
+.chip.b{border-color:rgba(147,197,253,.2);color:#93c5fd}
+.chip.a{border-color:rgba(251,191,36,.18);color:#fbbf24}
+.pq{border-left:2px solid var(--gold);padding:16px 22px;background:var(--gold3);font-size:14px;color:var(--slate3);line-height:1.75;font-style:italic}
+
+/* ─── CHART ─── */
+.chart-box{background:var(--ink2);border:1px solid var(--border2);padding:36px;margin-bottom:28px}
+.chart-head{display:flex;flex-wrap:wrap;gap:8px 24px;align-items:center;margin-bottom:24px}
+.chart-ttl{font-size:14px;font-weight:500;color:var(--cream);flex:1}
+.leg{display:flex;align-items:center;gap:7px;font-size:11px;color:var(--slate2)}
+.leg-l{width:18px;height:1.5px}
+.chart-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.chart-cap{font-size:11px;color:var(--slate);margin-top:14px;line-height:1.5}
+
+/* ─── AI / CITATIONS ─── */
+.ai-row{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;margin-top:36px}
+.ai-cell{background:var(--ink2);border:1px solid var(--border2);padding:28px 20px;text-align:center;transition:all .3s}
+.ai-cell:hover{border-color:var(--border);background:var(--ink3)}
+.ai-name{font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--slate);margin-bottom:10px}
+.ai-num{font-family:var(--serif);font-size:36px;font-weight:700;color:var(--gold);line-height:1;margin-bottom:4px}
+.ai-sub{font-size:11px;color:var(--slate);line-height:1.4}
+
+/* ─── COUNTRIES ─── */
+.country-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:2px}
+.country{background:var(--ink2);border:1px solid var(--border2);padding:16px 20px;display:flex;align-items:center;gap:14px;transition:all .3s}
+.country:hover{border-color:var(--border);background:var(--ink3)}
+.cflag{font-size:22px;flex-shrink:0;line-height:1}
+.cname{font-size:13px;font-weight:500;color:var(--cream);margin-bottom:2px}
+.cdata{font-family:var(--mono);font-size:10px;color:var(--slate)}
+
+/* ─── TOP PAGES TABLE ─── */
+.tbl-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid var(--border2)}
+table{border-collapse:collapse;width:100%;min-width:420px}
+th{background:var(--ink2);padding:11px 16px;text-align:left;font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--slate);border-bottom:1px solid var(--border2)}
+td{padding:12px 16px;border-bottom:1px solid var(--border3);font-size:13px;color:var(--slate2)}
+td:first-child{color:var(--cream);font-weight:500}
+tbody tr:last-child td{border-bottom:none}
+tbody tr{transition:background .15s}
+tbody tr:hover td{background:var(--ink2)}
+.n{text-align:right;font-family:var(--mono);font-size:12px}
+.up{color:#4ade80;font-weight:600}
+.dn{color:#f87171}
+
+/* ─── SKILLS ─── */
+.skills-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2px}
+.sg{background:var(--ink2);border:1px solid var(--border2);padding:36px;transition:border-color .3s}
+.sg:hover{border-color:var(--border)}
+.sg-cat{font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:12px}
+.sg-title{font-family:var(--serif);font-size:22px;font-weight:700;color:var(--cream);margin-bottom:18px}
+.sg-tags{display:flex;flex-wrap:wrap;gap:6px}
+.sg-tag{font-size:12px;color:var(--slate2);background:var(--ink3);border:1px solid var(--border2);border-radius:1px;padding:4px 10px;transition:all .2s}
+.sg-tag:hover{color:var(--cream);border-color:var(--border)}
+
+/* ─── EDUCATION ─── */
+.edu-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:2px}
+.edu{background:var(--ink2);border:1px solid var(--border2);padding:32px;transition:border-color .3s}
+.edu:hover{border-color:var(--border)}
+.edu-yr{font-family:var(--mono);font-size:11px;color:var(--gold);margin-bottom:12px}
+.edu-deg{font-family:var(--serif);font-size:20px;font-weight:700;color:var(--cream);line-height:1.15;margin-bottom:6px}
+.edu-inst{font-size:13px;color:var(--slate2);margin-bottom:8px;line-height:1.5}
+.edu-det{font-size:12px;color:var(--slate);line-height:1.55}
+
+/* ─── PROJECTS ─── */
+.proj-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:2px}
+.proj{background:var(--ink2);border:1px solid var(--border2);padding:30px;transition:all .3s}
+.proj:hover{border-color:var(--border);transform:translateY(-3px);box-shadow:0 20px 60px rgba(0,0,0,.4)}
+.proj-url{font-family:var(--mono);font-size:11px;color:var(--gold);margin-bottom:9px}
+.proj-name{font-size:16px;font-weight:600;color:var(--cream);margin-bottom:9px}
+.proj-desc{font-size:13px;color:var(--slate2);line-height:1.65;font-weight:300}
+
+/* ─── RESUME ─── */
+.resume-bar{background:var(--ink2);border:1px solid var(--border);padding:36px 44px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-bottom:2px}
+.rb-ttl{font-family:var(--serif);font-size:24px;font-weight:600;color:var(--cream);margin-bottom:4px}
+.rb-sub{font-size:13px;color:var(--slate2);font-weight:300}
+.rb-btn{background:var(--gold);color:var(--ink);padding:14px 32px;border-radius:2px;font-size:13px;font-weight:600;letter-spacing:.04em;transition:all .3s;display:inline-flex;align-items:center;gap:9px;border:none;cursor:pointer;white-space:nowrap}
+.rb-btn:hover{background:var(--gold2);transform:translateY(-2px);box-shadow:0 12px 32px rgba(200,169,75,.2)}
+
+/* ─── DATA TABLE ─── */
+.verify-table{background:var(--ink2);border:1px solid var(--border2);padding:32px}
+.verify-title{font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--slate);margin-bottom:20px}
+
+/* ─── CTA ─── */
+.cta-section{padding:100px 0;text-align:center;position:relative;overflow:hidden}
+.cta-section::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:600px;height:600px;background:radial-gradient(ellipse,rgba(200,169,75,.04),transparent 70%);pointer-events:none}
+.cta-section h2{margin-bottom:16px}
+.cta-section p{color:var(--slate2);max-width:44ch;margin:0 auto 36px;font-size:16px;line-height:1.75;font-weight:300}
+.contact-row{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:28px}
+.ci{display:inline-flex;align-items:center;gap:8px;font-size:13px;color:var(--slate2);border:1px solid var(--border2);border-radius:2px;padding:11px 20px;transition:all .25s}
+.ci:hover{border-color:var(--border);color:var(--cream);transform:translateY(-1px)}
+
+/* ─── FOOTER ─── */
+footer{border-top:1px solid var(--border3);padding:28px 40px;max-width:100%;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
+.fn{font-family:var(--serif);font-size:15px;color:var(--slate)}
+.fc{font-family:var(--mono);font-size:11px;color:var(--slate)}
+
+/* ─── RESPONSIVE ─── */
+@media(max-width:900px){
+  .nav-links{display:none}
+  .ham{display:flex}
+  .about-layout{grid-template-columns:1fr;gap:48px}
+  .skills-grid{grid-template-columns:1fr}
+  .ai-row{grid-template-columns:repeat(2,1fr)}
+  .hero-nums{flex-wrap:wrap}
+  .hn{border-bottom:1px solid var(--border);border-right:none;min-width:50%}
+  .hn:last-child,.hn:nth-last-child(2):nth-child(odd){border-bottom:none}
+  .xp{grid-template-columns:1fr;gap:0}
+  .xp::before{display:none}
+  .xp-date{padding:0 0 6px;font-size:11px}
+  .xp-body{padding:0 0 40px 20px}
+  footer{padding:20px 24px}
+  .resume-bar{padding:24px;flex-direction:column;align-items:flex-start}
+  .case-top{flex-direction:column}
+  .case-kpis{justify-content:flex-start}
+  .kpi{text-align:left}
+  .nav-inner{padding:0 24px}
+  .hero-inner{padding:0 24px}
+  .s-wrap{padding:0 24px}
+}
+@media(max-width:580px){
+  .hero-nums{flex-direction:column}
+  .hn{border-right:none;border-bottom:1px solid var(--border);min-width:100%}
+  .hn:last-child{border-bottom:none}
+  .ai-row{grid-template-columns:1fr 1fr}
+  .section{padding:72px 0}
+  .cta-section{padding:72px 0}
+  .case{padding:28px 24px}
+  footer{flex-direction:column;gap:6px}
+}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.hero-eyebrow,.hero-sub,.hero-actions,.hero-nums,h1.hero-h1 .line span{opacity:1!important;transform:none!important}#loader{display:none}.rev,.rev-l{opacity:1;transform:none}}
+[id]{scroll-margin-top:72px}
+.cursor-dot,.cursor-ring{display:none}
+@media(hover:none){.cursor-dot,.cursor-ring{display:none!important}}
+#prog{position:fixed;top:0;left:0;height:2px;width:0;background:var(--gold);z-index:700}
+#toast{position:fixed;bottom:28px;left:50%;transform:translate(-50%,20px);background:var(--ink3);border:1px solid var(--border);color:var(--cream);padding:10px 20px;font-size:13px;border-radius:2px;opacity:0;pointer-events:none;transition:all .4s var(--ease);z-index:900}
+#toast.show{opacity:1;transform:translate(-50%,0)}
+.btn-primary,.rb-btn{position:relative;overflow:hidden;font-family:var(--sans)}
+.btn-primary::after{content:'';position:absolute;top:0;left:-60%;width:40%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.35),transparent);transform:skewX(-20deg);transition:left .7s var(--ease)}
+.btn-primary:hover::after{left:130%}
+button.btn-line{font-family:var(--sans);cursor:pointer;margin-left:10px}
+.xp-body:hover::before{background:var(--gold)}
+</style>
+</head>
+<body>
+
+<!-- LOADER -->
+<div id="loader">
+  <div class="loader-name">
+    <span>Kshitija</span>
+    <span>&nbsp;Morale</span>
+  </div>
+  <div class="loader-bar-wrap"><div class="loader-bar"></div></div>
+</div>
+
+<!-- CURSOR (desktop only) -->
+<div class="cursor-dot" id="cDot"></div>
+<div class="cursor-ring" id="cRing"></div>
+
+<!-- MOBILE MENU -->
+<div class="mob" id="mob">
+  <button class="mob-close" id="mobClose">✕</button>
+  <a href="#about" onclick="closeMob()">About</a>
+  <a href="#approach" onclick="closeMob()">Approach</a>
+  <a href="#work" onclick="closeMob()">Work</a>
+  <a href="#skills" onclick="closeMob()">Skills</a>
+  <a href="#education" onclick="closeMob()">Education</a>
+  <a href="#contact" onclick="closeMob()">Contact</a>
+</div>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-inner">
+    <div class="nav-logo" onclick="window.scrollTo(0,0)">K<em>.</em>Morale</div>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#approach">Approach</a></li>
+      <li><a href="#work">Work</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#contact" class="nav-cta">Contact</a></li>
+    </ul>
+    <button class="ham" id="ham" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-grid-bg"></div>
+  <div class="orb orb1"></div>
+  <div class="orb orb2"></div>
+  <div class="hero-inner">
+    <div class="hero-eyebrow">
+      <div class="eyebrow-line"></div>
+      <span>Mumbai · Open to Product roles · Pune &amp; Remote</span>
+      <div class="blink-dot"></div>
+    </div>
+    <h1 class="hero-h1">
+      <span class="line"><span>Kshitija</span></span>
+      <span class="line"><span>Morale</span></span>
+      <span class="line"><span><em>Product-minded.</em></span></span>
+    </h1>
+    <p class="hero-sub">Aspiring Associate Product Manager. I take a problem from <b>user research to a shipped product</b>, then use the data to decide what to do next. Recent work: two B2B websites built end to end, and <b>65,449 organic impressions across 187 countries</b> with no paid spend.</p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-primary">Get in touch &nbsp;↓</a>
+      <a href="#work" class="btn-line">View case studies &nbsp;↓</a>
+      <a href="https://linkedin.com/in/kshitija-morale23" target="_blank" class="btn-line">LinkedIn &nbsp;↗</a>
+    </div>
+    <div class="hero-nums">
+      <div class="hn"><div class="hn-val" id="c1">0</div><div class="hn-label">Organic impressions<br>zero paid spend</div></div>
+      <div class="hn"><div class="hn-val" id="c2">0</div><div class="hn-label">Countries reached<br>organically</div></div>
+      <div class="hn"><div class="hn-val" id="c3">0</div><div class="hn-label">Organic clicks<br>667 ranking queries</div></div>
+      <div class="hn"><div class="hn-val">2</div><div class="hn-label">Websites built<br>solo — end to end</div></div>
+      <div class="hn"><div class="hn-val">4×</div><div class="hn-label">Tool CTR vs<br>site average</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="section" id="about">
+<div class="s-wrap">
+  <div class="s-eyebrow rev">About me</div>
+  <h2 class="rev d1">Research, build,<br><em>measure, iterate.</em></h2>
+  <div class="about-layout">
+    <div class="about-body rev d2">
+<p>I'm Kshitija, an aspiring product manager based in Mumbai. At Triton Alloys, a B2B steel exporter, I own the whole digital channel on my own: research, site design and build, content, analytics and brand. It has been product work under another name: understand a user, decide what to build first, ship it, then read the data.</p>
+<p>So far that has meant <b>65,449 impressions across 187 countries</b> with no paid spend, a weight calculator with <b>four times the site's average click-through rate</b>, and sessions from <b>ChatGPT, Perplexity, Gemini and Copilot</b>. I also documented a traffic dip after a deliberate content pivot, because what went wrong is as useful to share as what went right.</p>
+<p>I hold an <b>MScIT from Mumbai University (2025)</b> and can build in React, so I work comfortably with engineers and designers. I'm looking for an <b>Associate Product Manager or Product Manager</b> role where I can own outcomes for real users and keep learning from a strong team.</p>
+    </div>
+    <div class="about-aside rev d3">
+      <div class="ac"><div class="ac-label">Current role</div><div class="ac-val"><b>Sr. Web Designer &amp; SEO</b>Triton Alloys Inc. · Mumbai<br>May 2025 – Present</div></div>
+      <div class="ac"><div class="ac-label">Seeking</div><div class="ac-val"><b>Associate Product Manager · Product Manager</b><br>Growth &amp; B2B products · Mumbai · Pune · Remote</div></div>
+      <div class="ac"><div class="ac-label">Contact</div><div class="ac-val"><b>kshitijamorale5@gmail.com</b>+91 97675 45081</div></div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- EXPERIENCE -->
+<section class="section" id="experience">
+<div class="s-wrap">
+  <div class="s-eyebrow rev">Experience</div>
+  <h2 class="rev d1">Where I've<br><em>worked.</em></h2>
+  <p class="s-sub rev d2">Hands-on roles with clear ownership and measurable outcomes.</p>
+  <div class="xp-list">
+    <div class="xp rev">
+      <div class="xp-date">May 2025<br>– Present</div>
+      <div class="xp-body">
+        <div class="xp-role">Sr. Web Designer &amp; SEO</div>
+        <div class="xp-co">Triton Alloys Inc. · Mumbai (Hybrid)</div>
+        <div class="xp-desc">Sole owner of the company's digital acquisition channel. Researched how buyers search, planned the site around it, then designed, built and launched two websites and the analytics behind them. Prioritised a roadmap of 80+ pages, shipped a weight-calculator tool, and ran a site-wide content pivot in April 2026 guided by Search Console data. Also owns brand collateral and social channels.</div>
+        <div class="xp-tags">
+          <span class="xp-tag">SEO · AEO · GEO</span>
+          <span class="xp-tag">GA4 · GSC</span>
+          <span class="xp-tag">Web Design &amp; Dev</span>
+          <span class="xp-tag">B2B Content Strategy</span>
+          <span class="xp-tag">Brand Design</span>
+          <span class="xp-tag">Social Media</span>
+        </div>
+      </div>
+    </div>
+    <div class="xp rev d1">
+      <div class="xp-date">Dec 2024<br>– May 2025</div>
+      <div class="xp-body">
+        <div class="xp-role">Full Stack Developer Intern</div>
+        <div class="xp-co">VSure Consultancy Services · Mumbai</div>
+        <div class="xp-desc">Built responsive web pages and dynamic UI components. Collaborated with design team on performance-optimised implementations.</div>
+        <div class="xp-tags"><span class="xp-tag">HTML · CSS · JS</span><span class="xp-tag">React.js</span><span class="xp-tag">UI/UX</span></div>
+      </div>
+    </div>
+    <div class="xp rev d2">
+      <div class="xp-date">Jun–Aug 2024</div>
+      <div class="xp-body">
+        <div class="xp-role">Web Development Intern</div>
+        <div class="xp-co">Afame Technologies · Remote</div>
+        <div class="xp-desc">Built Blossom — a responsive e-commerce site. Mobile-first, cross-browser, version-controlled with Git.</div>
+        <div class="xp-tags"><span class="xp-tag">HTML · CSS · Bootstrap</span><span class="xp-tag">Git</span></div>
+      </div>
+    </div>
+    <div class="xp rev d3">
+      <div class="xp-date">Apr–May 2024</div>
+      <div class="xp-body">
+        <div class="xp-role">Digital Marketing Intern</div>
+        <div class="xp-co">IIDE · Mumbai</div>
+        <div class="xp-desc">SEO, digital strategy, campaign planning. Designed SEO-optimised pages, infographics, and motion graphics.</div>
+        <div class="xp-tags"><span class="xp-tag">SEO</span><span class="xp-tag">Content</span><span class="xp-tag">Motion Graphics</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- APPROACH -->
+<section class="section" id="approach"><div class="s-wrap">
+<div class="s-eyebrow rev">How I work</div>
+<h2 class="rev d1">A product loop,<br><em>in practice.</em></h2>
+<p class="s-sub rev d2">The same four steps run through everything I've shipped at Triton.</p>
+<div class="skills-grid"><div class="sg rev d1"><div class="sg-cat">01 · Discover</div><div class="sg-title">Understand the buyer</div><p class="proj-desc">Mapped how procurement engineers search, by grade designation rather than internal product codes, and structured the site around those queries.</p></div><div class="sg rev d2"><div class="sg-cat">02 · Prioritise</div><div class="sg-title">Decide what to build first</div><p class="proj-desc">Sequenced 80+ pages by buyer intent and expected impact, starting with grade and comparison pages closest to a purchase decision.</p></div><div class="sg rev d3"><div class="sg-cat">03 · Ship</div><div class="sg-title">Build it end to end</div><p class="proj-desc">Designed, wrote, built and launched the site, plus a weight calculator that answered a task buyers already did before requesting a quote.</p></div><div class="sg rev d4"><div class="sg-cat">04 · Measure</div><div class="sg-title">Read the data, then adjust</div><p class="proj-desc">GA4 events and Search Console were live before launch. When the April 2026 pivot cut traffic, I tracked the recovery and documented the cause.</p></div></div></div></section>
+
+<!-- CASE STUDIES -->
+<section class="section" id="work">
+<div class="s-wrap">
+  <div class="s-eyebrow rev">Case studies</div>
+  <h2 class="rev d1">The work,<br><em>with the data.</em></h2>
+  <p class="s-sub rev d2">Every number below is sourced from Search Console and GA4 properties I built and own.</p>
+
+  <!-- CHART -->
+  <div class="chart-box rev">
+    <div class="chart-head">
+      <div class="chart-ttl">tritonalloysincs355.com · Monthly impressions &amp; position · Jul 2025 – Sep 2026</div>
+      <div class="leg"><div class="leg-l" style="background:var(--gold)"></div>Impressions</div>
+      <div class="leg"><div class="leg-l" style="background:var(--slate);border-top:1.5px dashed var(--slate)"></div>Avg position</div>
+    </div>
+    <div class="chart-scroll">
+      <svg viewBox="0 0 960 270" style="display:block;width:100%;min-width:480px">
+        <defs>
+          <linearGradient id="gA" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#c8a94b" stop-opacity=".22"/>
+            <stop offset="100%" stop-color="#c8a94b" stop-opacity="0"/>
+          </linearGradient>
+        </defs>
+        <line x1="44" y1="20" x2="950" y2="20" stroke="#171d2e" stroke-width="1"/>
+        <line x1="44" y1="82" x2="950" y2="82" stroke="#171d2e" stroke-width="1"/>
+        <line x1="44" y1="145" x2="950" y2="145" stroke="#171d2e" stroke-width="1"/>
+        <line x1="44" y1="208" x2="950" y2="208" stroke="#171d2e" stroke-width="1"/>
+        <text x="40" y="24" fill="#5c6b84" font-size="10" text-anchor="end" font-family="DM Mono,monospace">10K</text>
+        <text x="40" y="86" fill="#5c6b84" font-size="10" text-anchor="end" font-family="DM Mono,monospace">7.5K</text>
+        <text x="40" y="149" fill="#5c6b84" font-size="10" text-anchor="end" font-family="DM Mono,monospace">5K</text>
+        <text x="40" y="212" fill="#5c6b84" font-size="10" text-anchor="end" font-family="DM Mono,monospace">2.5K</text>
+        <path d="M46,226 L110,188 L174,176 L238,174 L302,160 L366,116 L430,38 L494,47 L558,20 L622,96 L686,101 L750,144 L814,180 L878,180 L950,213 L950,208 L950,232 L46,232Z" fill="url(#gA)"/>
+        <path d="M46,226 L110,188 L174,176 L238,174 L302,160 L366,116 L430,38 L494,47 L558,20 L622,96 L686,101 L750,144 L814,180 L878,180 L950,213" fill="none" stroke="#c8a94b" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+        <path d="M46,221 L110,145 L174,87 L238,68 L302,77 L366,59 L430,53 L494,47 L558,46 L622,58 L686,64 L750,65 L814,85 L878,136 L950,130" fill="none" stroke="#5c6b84" stroke-width="1.5" stroke-dasharray="6 4" stroke-linejoin="round"/>
+        <circle cx="558" cy="20" r="5" fill="#07090f" stroke="#c8a94b" stroke-width="2"/>
+        <text x="552" y="13" text-anchor="end" fill="#c8a94b" font-size="10.5" font-weight="600" font-family="DM Sans,sans-serif">Mar 2026 · Peak · 10,127 impr</text>
+        <line x1="366" y1="26" x2="366" y2="232" stroke="#c8a94b" stroke-width="1" stroke-dasharray="3 6" opacity=".3"/>
+        <text x="370" y="44" fill="#c8a94b" font-size="10" font-family="DM Sans,sans-serif" opacity=".6">Content pivot →</text>
+        <circle cx="950" cy="213" r="4" fill="#07090f" stroke="#4ade80" stroke-width="2"/>
+        <text x="944" y="204" text-anchor="end" fill="#4ade80" font-size="10.5" font-weight="600" font-family="DM Sans,sans-serif">Sep 2026 · Recovering ↑</text>
+        <text x="46" y="252" fill="#5c6b84" font-size="10" font-family="DM Sans,sans-serif">Jul 2025</text>
+        <text x="558" y="252" text-anchor="middle" fill="#5c6b84" font-size="10" font-family="DM Sans,sans-serif">Mar 2026</text>
+        <text x="950" y="252" text-anchor="end" fill="#5c6b84" font-size="10" font-family="DM Sans,sans-serif">Sep 2026</text>
+      </svg>
+    </div>
+    <p class="chart-cap">Source: Google Search Console · 7 Jul 2025 – 17 Sep 2026. Sep 2026 is a partial month. Dashed line = April 2026 strategic content pivot to India-specific targeting, now in confirmed recovery.</p>
+  </div>
+
+  <div class="case-stack">
+    <div class="case rev">
+      <div class="case-top">
+        <div>
+          <div class="case-type">★ Primary case study · tritonalloysincs355.com</div>
+          <div class="case-title">Building a B2B search channel from zero</div>
+        </div>
+        <div class="case-kpis">
+          <div class="kpi"><div class="kpi-val">65,449</div><div class="kpi-label">Impressions</div></div>
+          <div class="kpi"><div class="kpi-val">187</div><div class="kpi-label">Countries</div></div>
+          <div class="kpi"><div class="kpi-val">9.6</div><div class="kpi-label">Best avg position</div></div>
+        </div>
+      </div>
+      <div class="case-body"><b style="color:var(--cream);font-weight:500">Problem:</b> a B2B steel exporter selling to 187 countries, with no digital presence. <b style="color:var(--cream);font-weight:500">Insight:</b> buyers search by grade designation (S355JR, S355J2, S355MC), not product code. <b style="color:var(--cream);font-weight:500">Action:</b> built 80+ pages around those queries, wrote all content, and set up GA4 and Search Console before launch. <b style="color:var(--cream);font-weight:500">Trade-off:</b> in April 2026 I moved 50+ pages to India-specific targeting to match the company's shifting buyer base. Traffic fell about 61% while Google re-evaluated the site; I tracked it in Search Console and it is now recovering.</div>
+      <div class="pq">The site now earns sessions from ChatGPT, Perplexity, Gemini and Copilot because each page is structured to give a clear, citable answer.</div>
+      <div class="case-chips">
+        <div class="chip g">65,449 impressions</div>
+        <div class="chip b">593 clicks</div>
+        <div class="chip g">187 countries</div>
+        <div class="chip a">293 lead events</div>
+        <div class="chip b">Position 65 → 9</div>
+        <div class="chip">₹0 ad spend</div>
+        <div class="chip g">AEO + GEO applied</div>
+      </div>
+    </div>
+
+    <div class="case rev d1">
+      <div class="case-top">
+        <div>
+          <div class="case-type">New launch · Sep 2026 · tritonpipes.com</div>
+          <div class="case-title">Second domain from scratch — pipes &amp; hollow sections</div>
+        </div>
+      </div>
+      <div class="case-body">A second Triton domain for structural steel pipes and hollow sections targeting a distinct global buyer segment. Independent keyword architecture, dedicated product pages, and a separate GA4 + GSC property. AEO and GEO strategy applied from launch day — early indexation in progress.</div>
+      <div class="case-chips">
+        <div class="chip b">Launched Sep 2026</div>
+        <div class="chip g">AEO + GEO from day 1</div>
+        <div class="chip">100% solo</div>
+      </div>
+    </div>
+
+    <div class="case rev d2">
+      <div class="case-top">
+        <div>
+          <div class="case-type">Product insight · S355 Weight Calculator</div>
+          <div class="case-title">Build the tool buyers actually need</div>
+        </div>
+        <div class="case-kpis">
+          <div class="kpi"><div class="kpi-val">3.4%</div><div class="kpi-label">CTR · 4× site avg</div></div>
+          <div class="kpi"><div class="kpi-val">99</div><div class="kpi-label">Clicks</div></div>
+        </div>
+      </div>
+      <div class="case-body">Buyers work out steel weight before requesting a quote, and were doing it on other sites. I built a free calculator for plates, pipes, bars, beams and hollow sections, then a second variant for mild steel square pipes. It became the second-highest click driver of 80+ pages at about four times the site's average CTR.</div>
+      <div class="pq">One functional page did more than many descriptive ones. The lesson: build the tool the user needs, and let content support it.</div>
+      <div class="case-chips">
+        <div class="chip g">3.4% CTR · 4× site average</div>
+        <div class="chip b">99 clicks · 2,908 impressions</div>
+        <div class="chip a">2nd highest click driver of 80+ pages</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- AI CITATIONS -->
+  <div class="s-eyebrow rev" style="margin-top:56px">AI search citations</div>
+  <p class="rev d1" style="font-size:15px;color:var(--slate2);line-height:1.75;max-width:60ch;font-weight:300;margin-bottom:0">Applied AEO and GEO across both Triton domains — GA4 confirms sessions from every major AI assistant.</p>
+  <div class="ai-row rev d2">
+    <div class="ai-cell"><div class="ai-name">ChatGPT</div><div class="ai-num">199</div><div class="ai-sub">sessions from chatgpt.com</div></div>
+    <div class="ai-cell"><div class="ai-name">Bing Organic</div><div class="ai-num">542</div><div class="ai-sub">sessions · powers Copilot</div></div>
+    <div class="ai-cell"><div class="ai-name">Perplexity</div><div class="ai-num">✓</div><div class="ai-sub">confirmed referral sessions</div></div>
+    <div class="ai-cell"><div class="ai-name">Gemini + Copilot</div><div class="ai-num">✓</div><div class="ai-sub">confirmed referral sessions</div></div>
+  </div>
+
+  <!-- TOP PAGES -->
+  <div class="s-eyebrow rev" style="margin-top:48px">Top performing pages</div>
+  <div class="tbl-wrap rev d1">
+    <table>
+      <thead><tr><th>Page</th><th class="n">Clicks</th><th class="n">Impressions</th><th class="n">CTR</th><th class="n">Position</th></tr></thead>
+      <tbody>
+        <tr><td>/S355-plates.html</td><td class="n up">108</td><td class="n">15,653</td><td class="n">0.69%</td><td class="n">16.2</td></tr>
+        <tr><td>/weight-calculator.html</td><td class="n">99</td><td class="n">2,908</td><td class="n up">3.40%</td><td class="n">13.8</td></tr>
+        <tr><td>/blogs.html</td><td class="n">35</td><td class="n">7,351</td><td class="n">0.48%</td><td class="n up">9.2</td></tr>
+        <tr><td>/ (homepage)</td><td class="n">35</td><td class="n">1,236</td><td class="n up">2.83%</td><td class="n">13.3</td></tr>
+        <tr><td>/S355JR-roundbar.html</td><td class="n">31</td><td class="n">1,674</td><td class="n">1.85%</td><td class="n">12.1</td></tr>
+        <tr><td>/S355MC.html</td><td class="n">22</td><td class="n">4,968</td><td class="n">0.44%</td><td class="n up">10.7</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- COUNTRIES -->
+  <div class="s-eyebrow rev" style="margin-top:48px">187 countries reached</div>
+  <div class="country-grid rev d1">
+    <div class="country"><div class="cflag">🇮🇳</div><div><div class="cname">India</div><div class="cdata">126 clicks · 5,735 impr</div></div></div>
+    <div class="country"><div class="cflag">🇬🇧</div><div><div class="cname">United Kingdom</div><div class="cdata">77 clicks · 9,525 impr</div></div></div>
+    <div class="country"><div class="cflag">🇺🇸</div><div><div class="cname">United States</div><div class="cdata">35 clicks · 14,814 impr</div></div></div>
+    <div class="country"><div class="cflag">🇭🇰</div><div><div class="cname">Hong Kong</div><div class="cdata">24 clicks · 3.31% CTR</div></div></div>
+    <div class="country"><div class="cflag">🇳🇱</div><div><div class="cname">Netherlands</div><div class="cdata">20 clicks · 1,901 impr</div></div></div>
+    <div class="country"><div class="cflag">🇸🇬</div><div><div class="cname">Singapore</div><div class="cdata">20 clicks · 1,137 impr</div></div></div>
+    <div class="country"><div class="cflag">🇦🇪</div><div><div class="cname">UAE</div><div class="cdata">15 clicks · 1,889 impr</div></div></div>
+    <div class="country"><div class="cflag">🇫🇮</div><div><div class="cname">Finland</div><div class="cdata">13 clicks · 956 impr</div></div></div>
+    <div class="country"><div class="cflag">🇦🇺</div><div><div class="cname">Australia</div><div class="cdata">12 clicks · 832 impr</div></div></div>
+    <div class="country"><div class="cflag">🇳🇴</div><div><div class="cname">Norway</div><div class="cdata">11 clicks · 956 impr</div></div></div>
+    <div class="country"><div class="cflag">🇩🇰</div><div><div class="cname">Denmark</div><div class="cdata">11 clicks · 814 impr</div></div></div>
+    <div class="country"><div class="cflag">🇩🇪</div><div><div class="cname">Germany</div><div class="cdata">9 clicks · 1,770 impr</div></div></div>
+  </div>
+
+  <!-- OTHER PROJECTS -->
+  <div class="s-eyebrow rev" style="margin-top:48px">Other projects</div>
+  <div class="proj-grid rev d1">
+    <div class="proj"><div class="proj-url">shivoralifestyle.com</div><div class="proj-name">KShivora Lifestyle</div><div class="proj-desc">WordPress + WooCommerce storefront — theme, product catalogue, and checkout built end-to-end.</div></div>
+    <div class="proj"><div class="proj-url">DurgSangram</div><div class="proj-name">Maratha Fort Platform</div><div class="proj-desc">Full-stack heritage platform. Creative Director &amp; Publication Head for the Chhatrapati Shivaji Maharaj community.</div></div>
+    <div class="proj"><div class="proj-url">Rupa Chemist</div><div class="proj-name">E-Commerce · MERN</div><div class="proj-desc">Pharmacy e-commerce — college capstone using MongoDB, React.js, Express.js, Node.js.</div></div>
+    <div class="proj"><div class="proj-url">Sahyadri Treks</div><div class="proj-name">Sahyadri Treks</div><div class="proj-desc">WordPress travel and heritage site covering Sahyadri trekking routes with custom plugin work.</div></div>
+  </div>
+</div>
+</section>
+
+<!-- SKILLS -->
+<section class="section" id="skills">
+<div class="s-wrap">
+  <div class="s-eyebrow rev">Skills</div>
+  <h2 class="rev d1">What I bring<br><em>to the table.</em></h2>
+  <p class="s-sub rev d2">Hands-on across every layer — from keyword strategy to HTML, from brand identity to GA4 event configuration.</p>
+  <div class="skills-grid">
+    <div class="sg rev d1">
+      <div class="sg-cat">Core expertise</div>
+      <div class="sg-title">SEO · AEO · GEO</div>
+      <div class="sg-tags">
+        <span class="sg-tag">Keyword research</span><span class="sg-tag">Search-intent mapping</span><span class="sg-tag">On-page SEO</span><span class="sg-tag">Technical SEO</span><span class="sg-tag">Schema markup</span><span class="sg-tag">Content audits</span><span class="sg-tag">AEO</span><span class="sg-tag">GEO</span><span class="sg-tag">Featured snippets</span><span class="sg-tag">AI citation strategy</span><span class="sg-tag">Internal linking</span><span class="sg-tag">Competitor analysis</span>
+      </div>
+    </div>
+    <div class="sg rev d2">
+      <div class="sg-cat">Data &amp; analytics</div>
+      <div class="sg-title">Analytics Stack</div>
+      <div class="sg-tags">
+        <span class="sg-tag">Google Analytics 4</span><span class="sg-tag">Google Search Console</span><span class="sg-tag">GA4 event config</span><span class="sg-tag">Conversion funnels</span><span class="sg-tag">Lead event tracking</span><span class="sg-tag">Bing Webmaster Tools</span><span class="sg-tag">Source attribution</span><span class="sg-tag">CTR &amp; position analysis</span>
+      </div>
+    </div>
+    <div class="sg rev d3">
+      <div class="sg-cat">Web design &amp; dev</div>
+      <div class="sg-title">Design &amp; Build</div>
+      <div class="sg-tags">
+        <span class="sg-tag">HTML5</span><span class="sg-tag">CSS3</span><span class="sg-tag">JavaScript</span><span class="sg-tag">React.js</span><span class="sg-tag">WordPress</span><span class="sg-tag">WooCommerce</span><span class="sg-tag">Bootstrap</span><span class="sg-tag">Tailwind CSS</span><span class="sg-tag">Figma</span><span class="sg-tag">Git</span><span class="sg-tag">Responsive design</span><span class="sg-tag">UI wireframing</span>
+      </div>
+    </div>
+    <div class="sg rev d4">
+      <div class="sg-cat">Brand &amp; content</div>
+      <div class="sg-title">Creative &amp; Marketing</div>
+      <div class="sg-tags">
+        <span class="sg-tag">Adobe Photoshop</span><span class="sg-tag">Adobe Illustrator</span><span class="sg-tag">Canva Pro</span><span class="sg-tag">Brochure design</span><span class="sg-tag">Brand identity</span><span class="sg-tag">Social media</span><span class="sg-tag">B2B copywriting</span><span class="sg-tag">Email signatures</span><span class="sg-tag">Product catalogues</span><span class="sg-tag">Campaign strategy</span>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- EDUCATION -->
+<section class="section" id="education">
+<div class="s-wrap">
+  <div class="s-eyebrow rev">Education</div>
+  <h2 class="rev d1">Academic<br><em>foundation.</em></h2>
+  <p class="s-sub rev d2">Strong technical grounding paired with real industry execution.</p>
+  <div class="edu-grid">
+    <div class="edu rev d1">
+      <div class="edu-yr">2025</div>
+      <div class="edu-deg">M.Sc. Information Technology</div>
+      <div class="edu-inst">Ramnarayan Ruia Autonomous College<br>Mumbai University</div>
+      <div class="edu-det">Postgraduate programme covering web technologies, databases, networking, and digital systems.</div>
+    </div>
+    <div class="edu rev d2">
+      <div class="edu-yr">2023</div>
+      <div class="edu-deg">B.Sc. Information Technology</div>
+      <div class="edu-inst">Vidyavardhini's Annasaheb Vartak College<br>Mumbai University</div>
+      <div class="edu-det">CGPA: 8.28 — Strong foundation in software development, databases, and IT systems.</div>
+    </div>
+    <div class="edu rev d3">
+      <div class="edu-yr">Certifications</div>
+      <div class="edu-deg">Professional Credentials</div>
+      <div class="edu-inst">Simplilearn · GreatLearning · MCTA</div>
+      <div class="edu-det">Full Stack Development · Front End HTML &amp; CSS · Web Designing Workshop</div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- RESUME + VERIFICATION -->
+<section class="section">
+<div class="s-wrap">
+  <div class="s-eyebrow rev">Resume &amp; data</div>
+  <h2 class="rev d1">Numbers you<br><em>can verify.</em></h2>
+  <p class="s-sub rev d2">I set up both Search Console and GA4, so the full history is intact. Screen recordings are available on request.</p>
+  <div class="resume-bar rev">
+    <div>
+      <div class="rb-ttl">Download my resume</div>
+      <div class="rb-sub">Full work history, skills, education, and verified metrics — one document.</div>
+    </div>
+    <a class="rb-btn" href="Kshitija_Morale_Resume_Sep2026.pdf" download>↓ &nbsp;Download Resume (PDF)</a>
+  </div>
+  <div class="verify-table rev d1">
+    <div class="verify-title">Data sources &amp; verification</div>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Claim</th><th>Source</th><th>Period</th></tr></thead>
+        <tbody>
+          <tr><td>65,449 impressions · 593 clicks · 667 queries · 187 countries</td><td>Google Search Console export</td><td>7 Jul 2025 – 17 Sep 2026</td></tr>
+          <tr><td>Position 65.8 → 9.6 → 37.6</td><td>GSC impression-weighted monthly average</td><td>Jul 2025 – Sep 2026</td></tr>
+          <tr><td>2,816 users · 293 lead events</td><td>GA4 · tritonalloysincs355.com</td><td>Jun 2025 – Sep 2026</td></tr>
+          <tr><td>199 ChatGPT sessions · 542 Bing organic</td><td>GA4 session source / medium</td><td>Full period</td></tr>
+          <tr><td>Weight calculator · 3.4% CTR · 99 clicks</td><td>GSC page-level filter</td><td>Full period</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- CONTACT -->
+<section class="section cta-section" id="contact">
+<div class="s-wrap" style="text-align:center">
+  <div class="s-eyebrow rev" style="justify-content:center">Let's talk</div>
+  <h2 class="rev d1">Let's have a<br><em>conversation.</em></h2>
+  <p class="rev d2">I'm looking for Associate Product Manager and Product Manager roles where I can own outcomes for real users. Based in Mumbai, open to Pune and remote.</p>
+  <a href="mailto:kshitijamorale5@gmail.com" class="btn-primary rev d3" style="display:inline-flex;margin:0 auto">✉ &nbsp;Send me an email</a><button class="btn-line" id="cp" type="button">Copy email</button>
+  <div class="contact-row rev d4">
+    <a href="tel:+919767545081" class="ci">📱 +91 97675 45081</a>
+    <a href="https://linkedin.com/in/kshitija-morale23" target="_blank" class="ci">↗ LinkedIn</a>
+    <a href="https://tritonalloysincs355.com" target="_blank" class="ci">↗ tritonalloysincs355.com</a>
+    <a href="https://tritonpipes.com" target="_blank" class="ci">↗ tritonpipes.com</a>
+  </div>
+</div>
+</section>
+
+<footer>
+  <div class="fn">Kshitija Morale · Mumbai</div>
+  <div class="fc">kshitijamorale5@gmail.com &nbsp;·&nbsp; +91 97675 45081</div>
+</footer>
+
+<div id="prog"></div><div id="toast"></div>
+<script>
+// ── LOADER
+setTimeout(()=>document.getElementById('loader').classList.add('gone'),1800);
+
+// ── CUSTOM CURSOR (desktop)
+const dot = document.getElementById('cDot');
+const ring = document.getElementById('cRing');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove', e => {
+  mx=e.clientX;my=e.clientY;dot.style.display=ring.style.display='';
+  dot.style.left = mx+'px'; dot.style.top = my+'px';
+});
+function animRing(){
+  rx += (mx-rx)*.12; ry += (my-ry)*.12;
+  ring.style.left = rx+'px'; ring.style.top = ry+'px';
+  requestAnimationFrame(animRing);
+}
+animRing();
+// hide on mobile
+if('ontouchstart' in window){ dot.style.display='none'; ring.style.display='none'; }
+// scale on hover
+document.querySelectorAll('a,button,.hn,.case,.sg,.country,.proj,.edu,.ac').forEach(el => {
+  el.addEventListener('mouseenter', () => { ring.style.transform='translate(-50%,-50%) scale(2)'; ring.style.borderColor='rgba(200,169,75,.25)'; });
+  el.addEventListener('mouseleave', () => { ring.style.transform='translate(-50%,-50%) scale(1)'; ring.style.borderColor='rgba(200,169,75,.4)'; });
+});
+
+// ── NAV SCROLL
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 60), {passive:true});
+
+// ── MOBILE MENU
+const ham = document.getElementById('ham');
+const mob = document.getElementById('mob');
+ham.addEventListener('click', () => mob.classList.add('open'));
+document.getElementById('mobClose').addEventListener('click', () => mob.classList.remove('open'));
+function closeMob(){ mob.classList.remove('open'); }
+
+// ── HERO COUNTERS
+function countUp(el, target, dur){
+  const start = performance.now();
+  const tick = now => {
+    const p = Math.min((now-start)/dur,1);
+    const ease = 1-Math.pow(1-p,3);
+    el.textContent = Math.floor(ease*target).toLocaleString('en-IN');
+    if(p<1) requestAnimationFrame(tick);
+  };
+  requestAnimationFrame(tick);
+}
+const nums = document.querySelector('.hero-nums');
+const no = new IntersectionObserver(e => {
+  if(e[0].isIntersecting){
+    countUp(document.getElementById('c1'),65449,2000);
+    countUp(document.getElementById('c2'),187,1400);
+    countUp(document.getElementById('c3'),593,1600);
+    no.disconnect();
+  }
+},{threshold:.4});
+if(nums) no.observe(nums);
+
+// ── SCROLL REVEAL
+const revEls = document.querySelectorAll('.rev,.rev-l');
+const ro = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('in'); });
+},{threshold:.1,rootMargin:'0px 0px -36px 0px'});
+revEls.forEach(el => ro.observe(el));
+
+// ── ACTIVE NAV
+const secs = document.querySelectorAll('[id]');
+const links = document.querySelectorAll('.nav-links a');
+const ao = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    const a = document.querySelector(`.nav-links a[href="#${e.target.id}"]`);
+    if(a) a.classList.toggle('active',e.isIntersecting);
+  });
+},{rootMargin:'-30% 0px -60% 0px'});
+secs.forEach(s => ao.observe(s));
+
+// in-page navigation (works inside sandboxed viewer)
+document.addEventListener('click',e=>{const a=e.target.closest('a[href^="#"]');if(!a)return;const id=a.getAttribute('href').slice(1);const t=id?document.getElementById(id):document.body;if(!t)return;e.preventDefault();closeMob();t.scrollIntoView({behavior:'smooth',block:'start'});});
+const prog=document.getElementById('prog');
+addEventListener('scroll',()=>{prog.style.width=(scrollY/Math.max(1,document.documentElement.scrollHeight-innerHeight)*100)+'%'},{passive:true});
+const EMAIL='kshitijamorale5@gmail.com';
+function toast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2400)}
+document.getElementById('cp').addEventListener('click',async()=>{try{await navigator.clipboard.writeText(EMAIL);toast('Email copied')}catch(err){const i=document.createElement('input');i.value=EMAIL;document.body.appendChild(i);i.select();try{document.execCommand('copy');toast('Email copied')}catch(x){toast(EMAIL)}i.remove()}});
+</script>
+</body>
+</html>
